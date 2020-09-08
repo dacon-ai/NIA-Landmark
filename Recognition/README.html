@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Korea Landmarks Dataset</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="korea-landmarks-dataset">Korea Landmarks Dataset</h1>
+<p>본 저장소는 한국정보화진흥원 <code>랜드마크 이미지 데이터</code>의 Instance-Level Recognition task 검수용으로 사용된 인공지능 모델을 구현하기 위한 저장소입니다.</p>
+<h2 id="dataset-download">Dataset Download</h2>
+<p>랜드마크 이미지 데이터는 공공 데이터 구축을 목적으로 하는 <a href="http://www.aihub.or.kr/">AI Hub</a>에서 제공됩니다.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Large-Scale에서의 Instance-Level Recognition task는 컴퓨터 비전 분야에서 활발히 연구되고 있는 분야중 하나입니다.</p>
+<h2 id="installation">Installation</h2>
+<p><a href="INSTALL_INSTRUCTION">Install Instruction</a></p>
+<h2 id="model">Model</h2>
+<p><img src="file:///c:\Users\choiu\Documents\GitHub\Choiuijin1125-landmark-recognition\docs\imgs\resnet101.png" alt="ResNet 101"></p>
+<p><a href="https://arxiv.org/abs/2004.01804"><img src="http://img.shields.io/badge/paper-arXiv.2004.01804-B3181B.svg" alt="Paper"></a></p>
+<h2 id="performance">Performance</h2>
+<p>모델 평가를 위한 지표는 Global Average Precision(GAP) 를 사용합니다.</p>
+<p>GAP = $$\frac{1}{M}\sum_{i=1}^N P(i) rel(i)$$</p>
+<ul>
+<li>N is the total number of predictions returned by the system, across all queries</li>
+<li>M is the total number of queries with at least one landmark from the training set visible in it (note that some queries may not depict landmarks)</li>
+<li>P(i) is the precision at rank i</li>
+<li>rel(i) denotes the relevance of prediciton i: it’s 1 if the i-th prediction is correct, and 0 otherwise</li>
+</ul>
+<p>|GAP</p>
+<p><a href="https://arxiv.org/abs/2004.01804"><img src="http://img.shields.io/badge/paper-arXiv.2004.01804-B3181B.svg" alt="Paper"></a> -- 수정필요</p>
+<pre><code><code><div>&quot;A Family of Contextual Measures of Similarity between Distributions with Application to Image Retrieval,&quot; 
+F. Perronnin, Y. Liu, and J.-M. Renders, 
+Proc. CVPR'09&quot;
+</div></code></code></pre>
+<h2 id="reference">Reference</h2>
+<p><a href="https://arxiv.org/abs/2004.01804"><img src="http://img.shields.io/badge/paper-arXiv.2004.01804-B3181B.svg" alt="Paper"></a></p>
+<pre><code><code><div>&quot;Google Landmarks Dataset v2 - A Large-Scale Benchmark for Instance-Level Recognition and Retrieval&quot;
+T. Weyand*, A. Araujo*, B. Cao, J. Sim,
+Proc. CVPR'20
+</div></code></code></pre>
+<h2 id="응용-서비스">응용 서비스</h2>
+<p>응용 서비스는 <a href="http://15.165.113.21:8080">페이지</a>에서 확인 가능합니다.</p>
+
+    </body>
+    </html>
