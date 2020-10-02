@@ -11,7 +11,6 @@ from absl import flags
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from model.model import DelfArcFaceModel
 from utils.preprocessing import CreateDataset
 
@@ -20,7 +19,9 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 FLAGS = flags.FLAGS
 
-flags.DEFINE_string('train_directory', '/tmp/', 'Training data directory.')
+flags.DEFINE_string('train_directory', '/NIA-Landmark/Recognition/tfrecords/train*', 'Training data directory.')
+flags.DEFINE_string('validation_directory', '/NIA-Landmark/Recognition/tfrecords/validation*', 'Training data directory.')
+flags.DEFINE_string('test_directory', '/NIA-Landmark/Recognition/tfrecords/test*', 'Training data directory.')
 flags.DEFINE_boolean('generate_train_validation_splits', False,
                      '(Optional) Whether to split the train dataset into'
                      'TRAIN and VALIDATION splits.')
@@ -36,7 +37,7 @@ strategy = tf.distribute.MirroredStrategy()
 
 
 EPOCHS = 1000
-batch_size = 32
+batch_size = 64
 image_size = 224
 STEPS_PER_TPU_CALL = 1
 learning_rate = 5e-5  # should be smaller than training on single GPU

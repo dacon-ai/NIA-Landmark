@@ -6,6 +6,6 @@ RUN apt-get update && apt-get install -y git
 
 RUN git clone https://github.com/dacon-ai/NIA-Landmark.git
 
-WORKDIR /NIA-Landmark
+WORKDIR /NIA-Landmark/Recognition
 
-RUN pip install -r requirements/build.txt
+RUN pip install -r requirements.txt
