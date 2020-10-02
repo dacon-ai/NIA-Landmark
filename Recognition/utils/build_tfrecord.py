@@ -107,13 +107,11 @@ def _get_all_image_files_and_labels(name, csv_path, image_dir):
   """
   image_paths = tf.io.gfile.glob(os.path.join(image_dir, '*.JPG'))
   file_ids = [os.path.basename(os.path.normpath(f))[:-4] for f in image_paths]
-  if name == _TRAIN_SPLIT:
+  if name == _TRAIN_SPLIT or _TEST_SPLIT:
     with tf.io.gfile.GFile(csv_path, 'rb') as csv_file:
       df = pd.read_csv(csv_file)
     df = df.set_index('id')
     labels = [int(df.loc[fid]['landmark_id']) for fid in file_ids]
-  elif name == _TEST_SPLIT:
-    labels = []
   else:
     raise ValueError('Unsupported dataset split name: %s' % name)
   return image_paths, file_ids, labels
@@ -206,14 +204,16 @@ def _write_tfrecord(output_prefix, image_paths, file_ids, labels):
   Raises:
     ValueError: if the length of input images, ids and labels don't match
   """
-  if output_prefix == _TEST_SPLIT:
-    labels = [None] * len(image_paths)
   if not len(image_paths) == len(file_ids) == len(labels):
     raise ValueError('length of image_paths, file_ids, labels shoud be the' +
                      ' same. But they are %d, %d, %d, respectively' %
                      (len(image_paths), len(file_ids), len(labels)))
 
   spacing = np.linspace(0, len(image_paths), FLAGS.num_shards + 1, dtype=np.int)
+  isExist = os.path.exists(os.path.join(FLAGS.output_directory))
+  if not isExist:
+    os.mkdir(os.path.join(FLAGS.output_directory))
+    
 
   for shard in range(FLAGS.num_shards):
     output_file = os.path.join(
@@ -391,8 +391,8 @@ def _build_test_tfrecord_dataset(csv_path, image_dir):
     Nothing. After the function call, sharded TFRecord files are materialized.
   """
   image_paths, file_ids, labels = _get_all_image_files_and_labels(
-      _TRAIN_SPLIT, csv_path, image_dir)
-  _write_tfrecord(_TRAIN_SPLIT, image_paths, file_ids, labels)
+      _TEST_SPLIT, csv_path, image_dir)
+  _write_tfrecord(_TEST_SPLIT, image_paths, file_ids, labels)
 
 
 def main(unused_argv):

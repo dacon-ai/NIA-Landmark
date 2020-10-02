@@ -1,1 +1,11 @@
-docker pull tensorflow/tensorflow
+ARG TENSORFLOW="2.3.1-gpu"
+
+FROM tensorflow/tensorflow:${TENSORFLOW}
+
+RUN apt-get update && apt-get install -y git
+
+RUN git clone https://github.com/dacon-ai/NIA-Landmark.git
+
+WORKDIR /NIA-Landmark
+
+RUN pip install -r requirements/build.txt

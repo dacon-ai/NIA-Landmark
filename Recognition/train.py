@@ -51,11 +51,11 @@ logit_scale = int(math.sqrt(feature_size))
 gem_p = 3.
 train_p = False  # whether to learn gem_p or not
 
-data_dir = "/home/ubuntu/Dacon/jin/NIA"
-checkpoint_dir = "/home/ubuntu/Dacon/jin/NIA/checkpoint/"
-train_tf_records_dir = "/home/ubuntu/Dacon/jin/NIA/tfrecords/train*"
-validation_tf_records_dir = "/home/ubuntu/Dacon/jin/NIA/tfrecords/validation*"
-test_tf_records_dir = "/home/ubuntu/Dacon/jin/NIA/tfrecords_test/test*"
+data_dir = "/NIA-Landmark/Recognition/"
+checkpoint_dir = "/NIA-Landmark/Recognition/checkpoint/"
+train_tf_records_dir = "/NIA-Landmark/Recognition/tfrecords/train*"
+validation_tf_records_dir = "/NIA-Landmark/Recognition/tfrecords/validation*"
+test_tf_records_dir = "/NIA-Landmark/Recognition/tfrecords/test*"
 
 def train_step(images, labels):
     with tf.GradientTape() as tape:
